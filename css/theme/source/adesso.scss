@@ -25,6 +25,14 @@ $headingTextTransform: none;
 $backgroundColor: #FFF;
 $slideBackgroundColor: #F3F2F1; // adesso-Grau 10%
 $linkColor: #C8B600; // adesso-Grün
+$quoteBackgroundColor: #FFF;
+$quoteColor: #887D75;
+
+$blockCodeColor: #FFF;
+$inlineCodeColor: #FFF;
+$dimColor: #887D75;
+
+
 $linkColorHover: lighten($linkColor, 20%);
 $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
 $headingMargin: 0 0 20px 0;
@@ -48,37 +56,36 @@ section.has-dark-background {
 }
 
 div.reveal {
-  .slides {
-    bottom: 30px;
-  }
 
-  section {
-    background: $slideBackgroundColor;
+  section.stack {
+    section {
+      background: $slideBackgroundColor;
 
-    h1, h2, h3, h4, h5 {
-      font-weight: bold;
-    }
+      h1, h2, h3, h4, h5 {
+        font-weight: bold;
+      }
 
-    h1 {
-      font-size: 3.5em;
-    }
+      h1 {
+        font-size: 3.5em;
+      }
 
-    h2 {
-      font-size: 2em;
-    }
+      h2 {
+        font-size: 2em;
+      }
 
-    img {
-      border: none;
-      background: none;
-      box-shadow: none;
-      margin: 0;
+      img {
+        border: none;
+        background: none;
+        box-shadow: none;
+        margin: 0;
+      }
     }
   }
 }
 
 // style title slide
-
 .title {
+  background: $slideBackgroundColor;
 
   section {
     border-left: 30px solid transparent;
@@ -127,29 +134,62 @@ div.reveal {
   }
 }
 
-.title footer {
+// remove header on title slide
+.title header {
   display: none;
 }
 
-// footer
-footer {
+// add adesso color side bar to about (last) slide
+.about {
+  background: $slideBackgroundColor;
+  border-right: 30px solid transparent;
+  border-image: url("adesso_sidebar.png") 30 stretch;
+}
+
+// header
+header {
   position: fixed;
-  bottom: 0;
+  top: 0;
   width: 100%;
+  height: 30px;
   display: flex;
   justify-content: space-between;
   background-color: $slideBackgroundColor;
-  padding: 5px 30px;
+  padding: 5px 20px;
 
+  // make participants in the header slightly smaller
   .participant {
-    width: 450px;
-    margin: 0px 30px;
+    width: 350px;
+    margin: 0 30px 0 0;
+    .logo {
+      height: 30px;
+      width: 30px;
+    }
+    .name {
+      p {
+        font-size: 15px;
+      }
+    }
   }
 
+  // make hots in the header slightly bigger
+  .host {
+    width: 500px;
+    margin: 0 30px 0 0;
+    .logo {
+      height: 40px;
+      width: 40px;
+    }
+    .name {
+      p {
+        font-size: 30px;
+      }
+    }
+  }
+
+  // default style within header
   .logo {
-    height: 30px;
-    width: 30px;
-    margin: 0px 10px 0 0;
+    margin: 0 10px 0 0;
     float: left;
 
     background-color: #FFFFFF;
@@ -158,14 +198,12 @@ footer {
   }
 
   .name {
-
     margin: 5px;
 
     p {
       padding: 0;
       margin: 0;
       font-family: $mainFont;
-      font-size: 20px;
       font-weight: normal;
       color: $headingColor;
       text-align: left;
@@ -178,6 +216,56 @@ footer {
       }
     }
   }
+}
+
+// tweek block blockquote
+
+.reveal .quoteblock {
+  width: 90%;
+  padding: 10px;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: $quoteBackgroundColor;
+
+  blockquote::before {
+    content: "\201c";
+    float: left;
+    font-size: 2.75em;
+    font-weight: bold;
+    line-height: 0.8em;
+    margin-left: -0.7em;
+    color: $quoteColor;
+  }
+
+  blockquote {
+    width: 75%;
+    background-color: inherit;
+    box-shadow: none;
+
+    p {
+      text-align: left;
+      color: $quoteColor;
+    }
+  }
+
+  .attribution {
+    color: $quoteColor;
+  }
+}
+
+
+  // add the 45° thing to the header
+header::after {
+  content: " ";
+  position: absolute;
+  border: none;
+  top: 40px;
+  left: 0;
+  width: 45%;
+
+  height: 0;
+  border-right: 20px solid transparent;
+  border-top: 20px solid $slideBackgroundColor;
 }
 
 // Theme template ------------------------------
