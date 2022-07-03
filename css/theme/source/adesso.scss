@@ -174,7 +174,7 @@ header {
 
   // make hots in the header slightly bigger
   .host {
-    width: 500px;
+    width: 600px;
     margin: 0 30px 0 0;
     .logo {
       height: 40px;
@@ -263,6 +263,8 @@ header::after {
   left: 0;
   width: 45%;
 
+
+  z-index: -1;
   height: 0;
   border-right: 20px solid transparent;
   border-top: 20px solid $slideBackgroundColor;
